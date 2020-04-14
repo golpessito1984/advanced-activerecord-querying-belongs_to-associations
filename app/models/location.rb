@@ -3,6 +3,15 @@ class Location < ActiveRecord::Base
   has_many :people
 
   def self.in_region(region)
-    all
+    # My Solution
+    # joins(:region).merge( Region.with_name(region) )
+    joins(:region).where(regions: { name: region })
   end
+
+
+    # My Solution
+  # def self.order_by_name
+  #   joins(:region).merge( Region.order_by_name ).order(:name)
+  # end
+
 end
